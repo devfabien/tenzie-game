@@ -8,6 +8,7 @@ function App() {
   const [dice, setDice] = useState(allNewDice());
 
  
+ 
   function generateNewDice(){
     return {
       id: nanoid(),
@@ -30,7 +31,7 @@ function App() {
 
 
   const diceElements = dice.map((die) => (
-    <Dice key={die.id} value={die.value}/>
+    <Dice key={die.id} value={die.value} isHeld={die.isHeld} />
   ));
   return (
     <>
@@ -45,7 +46,7 @@ function App() {
         onClick={rollDice}
         className="mt-10 rounded-md py-3 text-white text-xl font-medium px-8 bg-blue-500 hover:bg-blue-700"
       >
-       Roll
+        Roll
       
       </button>
     </div>
