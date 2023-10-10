@@ -29,14 +29,18 @@ function App() {
     }))
   }
 
-
+function holdDice(id:string){
+  setDice(oldDice=>oldDice.map(die=>{
+    return die.id===id ?{...die,isHeld:!die.isHeld}:
+    die
+  }))
+}
 
   const diceElements = dice.map((die) => (
-    <Dice key={die.id} value={die.value} isHeld={die.isHeld} />
+    <Dice key={die.id} value={die.value} isHeld={die.isHeld} holdDice={()=>holdDice(die.id)}/>
   ));
   return (
     <>
-   
     <div className="my-5 flex flex-col items-center justify-between md:w-3/4 lg:w-1/2 md:mx-auto border-8 rounded-md border-cyan-700 p-10 h-[90vh]">
     <div><h2 className="py-4 font-bold text-4xl">Tenzies Game</h2>
         <h2 className="text-xl pt-10">Roll until all dice are the same. 
