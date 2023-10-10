@@ -34,9 +34,13 @@ function App() {
   }
 
   function rollDice() {
+    if(!tenzie){
     setDice(oldDice=>oldDice.map(die=> {
       return die.isHeld? die:generateNewDice()
-    }))
+    }));}else{
+      setTenzie(false)
+      setDice(allNewDice())
+    }
   }
 
 function holdDice(id:string){
