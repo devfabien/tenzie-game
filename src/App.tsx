@@ -15,11 +15,19 @@ function App() {
     }
     return NEW_DICE;
   }
+  function rollDice() {
+    setDice(allNewDice());
+  }
   const diceElements = dice.map((die) => <Dice value={die.value} />);
   return (
     <div className="my-5 flex flex-col items-center justify-center w-3/5 mx-auto border-8 rounded-md border-cyan-700 p-10 h-[90vh]">
       <div className="px-5 grid w-full grid-cols-5 gap-6">{diceElements}</div>
-
+      <button
+        onClick={rollDice}
+        className=" my-3 rounded-md py-3 text-white text-xl font-medium px-8 bg-blue-500 hover:bg-blue-700"
+      >
+        Roll
+      </button>
     </div>
   );
 }
