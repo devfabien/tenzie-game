@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import Dice from "./components/Dice";
 import { nanoid } from "nanoid";
 import {NewDice} from "./components/interfaces"
@@ -6,7 +6,17 @@ import {NewDice} from "./components/interfaces"
 function App() {
 
   const [dice, setDice] = useState(allNewDice());
+  const [tenzie, setTenzie]=useState(false)
 
+  useEffect(() => {
+   const allHeld =dice.every(dice=>dice.isHeld);
+   const firstValue=dice[0].value
+   const allValues=dice.every(dice=>dice.value===firstValue)
+   if(allHeld && allValues){
+    setTenzie(true)
+   }
+
+  }, [dice])
  
   function generateNewDice(){
     return {
@@ -51,7 +61,7 @@ function holdDice(id:string){
         onClick={rollDice}
         className="mt-10 rounded-md py-3 text-white text-xl font-medium px-8 bg-blue-500 hover:bg-blue-700"
       >
-        Roll
+        {tenzie?"New Game":"Roll"}
       
       </button>
     </div>
