@@ -1,10 +1,12 @@
 import { useState,useEffect } from "react";
 import Dice from "./components/Dice";
 import { nanoid } from "nanoid";
+import Confetti from "react-confetti";
 import {NewDice} from "./components/interfaces"
 
 function App() {
-
+  const width=window.innerWidth;
+  const height=window.innerHeight;
   const [dice, setDice] = useState(allNewDice());
   const [tenzie, setTenzie]=useState(false)
 
@@ -55,7 +57,8 @@ function holdDice(id:string){
   ));
   return (
     <>
-    <div className="my-5 flex flex-col items-center justify-between md:w-3/4 lg:w-1/2 md:mx-auto border-8 rounded-md border-cyan-700 p-10 h-[90vh]">
+    {tenzie && <Confetti width={width} height={height}/>}
+    <div className="my-5 flex flex-col items-center justify-between :w-1/2 md:mx-auto border-8 rounded-md border-cyan-700 p-10 h-[90vh]">
     <div><h2 className="py-4 font-bold text-4xl">Tenzies Game</h2>
         <h2 className="text-xl pt-10">Roll until all dice are the same. 
               Click each die to freeze it at its current value between rolls.</h2>
