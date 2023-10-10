@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import Dice from "./components/Dice";
 import { nanoid } from "nanoid";
 import {NewDice} from "./components/interfaces"
@@ -7,7 +7,6 @@ function App() {
 
   const [dice, setDice] = useState(allNewDice());
 
- 
  
   function generateNewDice(){
     return {
@@ -25,7 +24,9 @@ function App() {
   }
 
   function rollDice() {
-    setDice(allNewDice())
+    setDice(oldDice=>oldDice.map(die=> {
+      return die.isHeld? die:generateNewDice()
+    }))
   }
 
 
